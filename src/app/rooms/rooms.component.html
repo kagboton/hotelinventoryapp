@@ -1,0 +1,28 @@
+<h2>Welcome to {{hotelName}} (hotelName uses interpolation synthaxe)</h2>
+
+<div [hidden]="hideRooms">
+  Number of Rooms (property binding):
+  <div [innerText]="numberOfRooms" 
+  [ngStyle]="{'color': rooms.availableRooms > 0 ? 'green': 'red'}"></div>
+</div>
+
+<!-- {{rooms.availableRooms ?? 'No rooms found'}} nullish coalescing operation -->
+
+<!-- {{roomList | json }} pipe json for debug purposes -->
+
+<div *ngIf="selectedRoom">
+  {{selectedRoom | json}}
+</div>
+
+<div>
+  <button (click)="addRoom()">Add Room</button>
+</div>
+
+<div *ngIf="rooms.availableRooms > 0">
+ <app-rooms-list [rooms]="roomList"
+ (selectedRoom)="selectRoom($event)"></app-rooms-list>
+</div>
+<br>
+<ngb-alert [dismissible]="false">{{roomList[0].availability}}</ngb-alert>
+
+<button (click)="toggle()">Toggle (event binding)</button>
