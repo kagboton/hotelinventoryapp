@@ -120,6 +120,7 @@ export class RoomsComponent implements OnInit {
       availability: 'Room is available',
     };
 
-    this.roomList.push(room);
+    //this.roomList.push(room);
+    this.roomList = [...this.roomList, room];
   }
 }

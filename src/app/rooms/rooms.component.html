@@ -2,8 +2,7 @@
 
 <div [hidden]="hideRooms">
   Number of Rooms (property binding):
-  <div [innerText]="numberOfRooms" 
-  [ngStyle]="{'color': rooms.availableRooms > 0 ? 'green': 'red'}"></div>
+  <div [innerText]="numberOfRooms" [ngStyle]="{'color': rooms.availableRooms > 0 ? 'green': 'red'}"></div>
 </div>
 
 <!-- {{rooms.availableRooms ?? 'No rooms found'}} nullish coalescing operation -->
@@ -19,8 +18,7 @@
 </div>
 
 <div *ngIf="rooms.availableRooms > 0">
- <app-rooms-list [rooms]="roomList"
- (selectedRoom)="selectRoom($event)"></app-rooms-list>
+  <app-rooms-list [rooms]="roomList" (selectedRoom)="selectRoom($event)"></app-rooms-list>
 </div>
 <br>
 <ngb-alert [dismissible]="false">{{roomList[0].availability}}</ngb-alert>

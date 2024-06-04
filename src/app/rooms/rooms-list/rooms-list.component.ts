@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import {
   AsyncPipe,
   CurrencyPipe,
@@ -31,12 +39,17 @@ import { RoomList } from '../rooms';
     DecimalPipe,
   ],
   templateUrl: './rooms-list.component.html',
-  styleUrl: './rooms-list.component.css'
+  styleUrl: './rooms-list.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RoomsListComponent {
   @Input() rooms: RoomList[] = [];
 
   @Output() selectedRoom = new EventEmitter<RoomList>();
+
+  constructor() {}
+
+  ngOnInit(): void {}
 
   selectRoom(room: RoomList) {
     this.selectedRoom.emit(room);
