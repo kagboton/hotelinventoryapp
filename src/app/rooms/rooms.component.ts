@@ -100,6 +100,7 @@ export class RoomsComponent implements OnInit {
 
   toggle() {
     this.hideRooms = !this.hideRooms;
+    this.hotelName = "Plazza Atene"
   }
 
   selectRoom(room: RoomList) {
