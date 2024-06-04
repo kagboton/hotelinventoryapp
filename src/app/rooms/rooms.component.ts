@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Room, RoomList } from './rooms';
 import { RoomsListComponent } from './rooms-list/rooms-list.component';
+import { HeaderComponent } from '../header/header.component';
 import {
   AsyncPipe,
   CurrencyPipe,
@@ -42,10 +43,10 @@ registerLocaleData(localeFr, 'fr');
     DecimalPipe,
     NgbAlert,
     RoomsListComponent,
+    HeaderComponent,
   ],
 })
-export class RoomsComponent implements OnInit {
-
+export class RoomsComponent implements OnInit, AfterViewInit {
   // Variables
   hotelName = 'Hilton Hotel';
   numberOfRooms = 100;
@@ -60,10 +61,18 @@ export class RoomsComponent implements OnInit {
     bookedRooms: 15,
   };
 
+  @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
+  //@ViewChild(HeaderComponent, {static : true}) headerComponent!: HeaderComponent; // force component to be ready inside the parent ngOnInit method
+
   constructor() {}
+
+  ngAfterViewInit(): void {
+    console.log('Header component nside afterViewInit', this.headerComponent);
+  }
 
   // Initialize the rooms
   ngOnInit(): void {
+    console.log('Header component inside ngOnInit', this.headerComponent);
     this.roomList = [
       {
         roomNumber: 101,
@@ -100,7 +109,7 @@ export class RoomsComponent implements OnInit {
 
   toggle() {
     this.hideRooms = !this.hideRooms;
-    this.hotelName = "Plazza Atene"
+    this.hotelName = 'Plazza Atene';
   }
 
   selectRoom(room: RoomList) {

@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  DoCheck,
   EventEmitter,
   Input,
   OnChanges,
@@ -42,14 +43,18 @@ import { RoomList } from '../rooms';
   styleUrl: './rooms-list.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RoomsListComponent implements OnChanges {
+export class RoomsListComponent implements OnChanges, DoCheck {
   @Input() rooms: RoomList[] = [];
 
   @Input() title: string = '';
 
   @Output() selectedRoom = new EventEmitter<RoomList>();
 
-  constructor() {}
+  constructor() { }
+  
+  ngDoCheck(): void {
+    console.log('on changes was called')
+  }
 
   ngOnInit(): void {}
 
@@ -59,6 +64,7 @@ export class RoomsListComponent implements OnChanges {
       this.title = changes['title'].currentValue.toUpperCase();
     }
   }
+
 
   selectRoom(room: RoomList) {
     this.selectedRoom.emit(room);

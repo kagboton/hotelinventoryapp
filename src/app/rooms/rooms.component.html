@@ -1,5 +1,5 @@
-<h2>Welcome to {{hotelName}} (hotelName uses interpolation synthaxe)</h2>
-
+<!-- <h2>Welcome to {{hotelName}} (hotelName uses interpolation synthaxe)</h2> -->
+<app-header></app-header>
 <div [hidden]="hideRooms">
   Number of Rooms (property binding):
   <div [innerText]="numberOfRooms" [ngStyle]="{'color': rooms.availableRooms > 0 ? 'green': 'red'}"></div>
