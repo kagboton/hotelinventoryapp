@@ -1,4 +1,4 @@
-import { Component, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, ElementRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { RoomsComponent } from './rooms/rooms.component';
 import { NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
@@ -23,11 +23,17 @@ export class AppComponent{
 
   role = 'Admin';
 
-  @ViewChild('rooms', { read: ViewContainerRef })
-  viewContainerRef!: ViewContainerRef; // helps dynamically load a component
+  @ViewChild('name', { static: true }) name !: ElementRef;
 
-  ngAfterViewInit() { 
-    const componentRef = this.viewContainerRef.createComponent(RoomsComponent);
-    componentRef.instance.numberOfRooms = 57; // change component property
+  ngOnInit() { 
+    this.name.nativeElement.innerText = "Hotel"; // template reference
   }
+
+  // @ViewChild('rooms', { read: ViewContainerRef })
+  // viewContainerRef!: ViewContainerRef; // helps dynamically load a component
+
+  // ngAfterViewInit() { 
+  //   const componentRef = this.viewContainerRef.createComponent(RoomsComponent);
+  //   componentRef.instance.numberOfRooms = 57; // change component property
+  // }
 }
