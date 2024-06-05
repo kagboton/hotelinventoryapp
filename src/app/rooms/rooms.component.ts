@@ -1,4 +1,4 @@
-import { AfterViewChecked, AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Room, RoomList } from './rooms';
 import { RoomsListComponent } from './rooms-list/rooms-list.component';
 import { HeaderComponent } from '../header/header.component';
@@ -61,8 +61,12 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
     bookedRooms: 15,
   };
 
-  @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
+  @ViewChild(HeaderComponent)
+  headerComponent!: HeaderComponent;
   //@ViewChild(HeaderComponent, {static : true}) headerComponent!: HeaderComponent; // force component to be ready inside the parent ngOnInit method
+
+  @ViewChildren(HeaderComponent)
+  headerChildrenComponent!: QueryList<HeaderComponent>;
 
   constructor() {}
   
@@ -70,7 +74,8 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
   }
 
   ngAfterViewInit(): void {
-    console.log('Header component nside afterViewInit', this.headerComponent);
+    console.log('Header component inside afterViewInit', this.headerComponent);
+    console.log(this.headerChildrenComponent.last.title = "Last Title");
     this.headerComponent.title = 'Hilton Palace'; // will produce error in development mode - shoul not in production
   }
 
