@@ -50,23 +50,27 @@ export class RoomsListComponent implements OnChanges, DoCheck {
 
   @Output() selectedRoom = new EventEmitter<RoomList>();
 
-  constructor() { }
-  
+  constructor() {}
+
   ngDoCheck(): void {
-    console.log('on changes was called')
+    console.log('on changes was called');
   }
 
   ngOnInit(): void {}
 
-  ngOnChanges(changes: SimpleChanges): void { // changes are new data from input
+  ngOnChanges(changes: SimpleChanges): void {
+    // changes are new data from input
     console.log(changes);
     if (changes['title']) {
       this.title = changes['title'].currentValue.toUpperCase();
     }
   }
 
-
   selectRoom(room: RoomList) {
     this.selectedRoom.emit(room);
+  }
+
+  ngOnDestroy() {
+    console.log('ngOnDestroy is called');
   }
 }
