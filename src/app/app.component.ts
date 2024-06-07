@@ -2,6 +2,8 @@ import { Component, ElementRef, ViewChild, ViewContainerRef } from '@angular/cor
 import { RouterOutlet } from '@angular/router';
 import { RoomsComponent } from './rooms/rooms.component';
 import { NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
+import { ContainerComponent } from './container/container.component';
+import { EmployeeComponent } from './employee/employee.component';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +11,8 @@ import { NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
   imports: [
     RouterOutlet,
     RoomsComponent,
+    ContainerComponent,
+    EmployeeComponent,
     NgSwitch,
     NgSwitchCase,
     NgSwitchDefault,

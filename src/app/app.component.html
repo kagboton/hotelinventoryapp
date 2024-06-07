@@ -1,6 +1,12 @@
 <h1>Hotelinventoryapp</h1>
-<app-rooms></app-rooms>
+<!-- <app-rooms></app-rooms> -->
 <div #name></div>
+
+<app-container>
+  <app-rooms></app-rooms>
+  <app-employee></app-employee>
+  <h1>This is from ng-content</h1>
+</app-container>
 
 <!-- <div [ngSwitch]="role">
   <div *ngSwitchCase="'User'">Welcome User!</div>
